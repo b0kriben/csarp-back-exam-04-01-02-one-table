@@ -47,8 +47,18 @@ namespace Kreata.Backend.Repos
 
         public Task<List<Student>> FilterStudentAsync(StudentQueryDto studentQueryDto)
         {
+            // Gyorsan megérthető változat
+            IQueryable<Student> filtered = _dbSet!.Where(s => s.IsWoman == studentQueryDto.IsWoman);
+            if(studentQueryDto.BirthYear > 0)
+            {
+                filtered = filtered.Where(s => s.BirthsDay.Year == studentQueryDto.BirthYear);
+            }
+            if(studentQueryDto.BirthMonth>0 && studentQueryDto.BirthMonth > 13)
+            {
+                filtered = filtered.Where(s => s.BirthsDay.Month == studentQueryDto.BirthMonth);
+            }
             // Vizsgaremek változat
-            IQueryable<Student> filteredByGender=_dbSet!.Where(s=>s.IsWoman == studentQueryDto.IsWoman);
+            //IQueryable<Student> filteredByGender=_dbSet!.Where(s=>s.IsWoman == studentQueryDto.IsWoman);
         }
     }
 }

@@ -5,6 +5,10 @@ namespace Kreta.Shared.Dtos.Query
 {
     public readonly record struct StudentQueryDto(string NamePart, int BirthYear, int BirthMonth, bool IsWoman)
     {
+        // BirthYear == 0 -> nem kell szűrni az évre
+        // BirthMonth == 0 vagy >12 -> nem kell szűrni az évre
+        // NamePart == string.Empty -> nem kell szűrni az évre
+
         public bool IsValid()
         {
             // Megadott szűrési feltételt akkor valid
