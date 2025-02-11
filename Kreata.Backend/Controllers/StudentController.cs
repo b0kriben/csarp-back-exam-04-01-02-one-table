@@ -48,6 +48,7 @@ namespace Kreata.Backend.Controllers
             return Ok(await _studentRepo.GetNumberOfStudentByYearAsync(year, month));
         }
 
+        // Ezt nem szabad
         [HttpGet("NumberOfStudentByYearAndMonthQuery2")]
         public async Task<IActionResult> GetNumberOfStudentByYearQueryAsync2([FromBody] int year)
         {
@@ -57,7 +58,7 @@ namespace Kreata.Backend.Controllers
 
         // Szűrés: név, évszám, hónap, nem
         [HttpGet("FilterStudent")]
-        public async Task<IActionResult> FilterStudentAsync([FromBody] StudentQueryDto studentQueryDto)
+        public async Task<IActionResult> FilterStudentAsync([FromQuery] StudentQueryDto studentQueryDto)
         {
             if (!studentQueryDto.IsValid())
                 return BadRequest("A szűrési paraméterek nem megfelelőek");
