@@ -53,10 +53,15 @@ namespace Kreata.Backend.Repos
             {
                 filtered = filtered.Where(s => s.BirthsDay.Year == studentQueryDto.BirthYear);
             }
-            if(studentQueryDto.BirthMonth>0 && studentQueryDto.BirthMonth > 13)
+            else if(studentQueryDto.BirthMonth>0 && studentQueryDto.BirthMonth < 13)
             {
                 filtered = filtered.Where(s => s.BirthsDay.Month == studentQueryDto.BirthMonth);
             }
+            else if (studentQueryDto.NamePart!=string.Empty)
+            {
+                filtered = filtered.Where(s => s.FullName.Contains(studentQueryDto.NamePart));
+            }
+            return filtered.ToListAsync();
             // Vizsgaremek változat
             //IQueryable<Student> filteredByGender=_dbSet!.Where(s=>s.IsWoman == studentQueryDto.IsWoman);
         }

@@ -14,6 +14,8 @@ namespace Kreta.Shared.Models
         public bool IsWoman { get; set; } = false;
         public bool HasId => Id != Guid.Empty;
         public bool IsMan =>!IsWoman;
+        public string FullName => $"{FirstName} {LastName}";
+        public string HungarianFullName => $"{LastName} {FirstName}";
 
         public override string ToString()
         {

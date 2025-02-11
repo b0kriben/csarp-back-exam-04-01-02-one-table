@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace Kreta.Shared.Dtos.Query
 {
-    public readonly record struct StudentQueryDto(string NamePart, int BirthYear, int BirthMonth, bool IsWoman)
+    public readonly record struct StudentQueryDto(string NamePart, int BirthYear, int BirthMonth, bool IsGenderFilteringNeeded, bool IsWoman)
     {
         // BirthYear == 0 -> nem kell szűrni az évre
         // BirthMonth == 0 vagy >12 -> nem kell szűrni az évre
