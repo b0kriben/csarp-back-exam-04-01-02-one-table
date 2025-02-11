@@ -45,7 +45,7 @@ namespace Kreata.Backend.Repos
                 .FindByCondition<Student>(s =>s.SchoolYear==schoolYear && s.SchoolClass==schoolClassType).ToListAsync();
         }
 
-        public Task<List<Student>> FilterStudentAsync(StudentQueryDto studentQueryDto)
+        public async Task<List<Student>> FilterStudentAsync(StudentQueryDto studentQueryDto)
         {
             // Gyorsan megérthető változat
             IQueryable<Student> filtered = _dbSet!.Where(s => s.IsWoman == studentQueryDto.IsWoman);
@@ -61,7 +61,7 @@ namespace Kreata.Backend.Repos
             {
                 filtered = filtered.Where(s => s.FullName.Contains(studentQueryDto.NamePart));
             }
-            return filtered.ToListAsync();
+            return await filtered.ToListAsync();
             // Vizsgaremek változat
             //IQueryable<Student> filteredByGender=_dbSet!.Where(s=>s.IsWoman == studentQueryDto.IsWoman);
         }
